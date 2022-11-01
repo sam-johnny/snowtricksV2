@@ -1,0 +1,6 @@
+{# Cards: articles #}
+    {% for post in posts %}
+        <div class="col-md-3 my-3">
+            {{ include('home/_cardsPosts.html.twig') }}
+        </div>
+    {% endfor %}

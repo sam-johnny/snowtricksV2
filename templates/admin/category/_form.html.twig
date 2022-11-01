@@ -1,0 +1,5 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_errors(form) }}
+    <button class="btn btn-outline-dark me-2">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

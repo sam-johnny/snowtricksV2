@@ -1,0 +1,26 @@
+{{ form_start(form) }}
+        {% if post.imageBanner %}
+            {{ form_widget(form.imageBanner, {'attr': {'style': "display: none"}}) }}
+        {% else %}
+            <hr>
+            {{ form_widget(form.imageBanner) }}
+            <hr>
+        {% endif %}
+        {{ form_row(form.title) }}
+        {{ form_row(form.content) }}
+        {{ form_row(form.category) }}
+<hr>
+{{ form_row(form.imageFiles) }}
+<hr>
+{{ form_row(form.urlsMedia) }}
+<hr>
+
+{{ form_rest(form) }}
+<div class="text-end">
+    <button type="submit" class="btn btn-outline-dark me-2">{{ button_label|default('Save') }}</button>
+    {% if post.id %}
+        {{ include('admin/post/_delete_form.html.twig') }}
+    {% endif %}
+</div>
+{{ form_end(form) }}
+

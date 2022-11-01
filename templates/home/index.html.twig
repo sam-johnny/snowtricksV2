@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Snowtricks - home' %}
+
+{% block body %}
+    {# Bannière #}
+    <div class="position-relative"
+         style="height: 90vh; background-image: url('{{ asset('images/header/snowboard.jpg') | imagine_filter('my_ban') }}'); background-size: cover; background-position: center">
+        <div class="position-absolute top-50 start-50 translate-middle col-sm-5 border text-center text-white"
+             style="backdrop-filter: brightness(80%)">
+            <h1>Snowtricks</h1>
+            <p class="lead">Bienvenue dans le blog spécialisé dans le snowtricks</p>
+        </div>
+
+        {# flèche vers le bas #}
+        <div class="position-absolute bottom-0 end-0" style="font-size: 2em">
+            <a href="#tricks" class="text-decoration-none text-white">
+                <i class="fa-solid fa-arrow-down position-absolute bottom-0 end-0 mx-3 mb-2"></i>
+            </a>
+        </div>
+    </div>
+
+    {# Liste des articles #}
+    <section id="tricks" class="container my-5">
+        <h2 class="text-center mb-5">La liste des articles</h2>
+
+        {# Message de confirmation #}
+        {% for message in app.flashes('success') %}
+            <div id="message" class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% if app.user %}
+        <div class="text-center">
+            <a href="{{ path('app_admin_post_new') }}" class="btn btn-outline-dark">Créer un article</a>
+        </div>
+        {% endif %}
+
+        {# Cards: articles #}
+        <div id="posts" class="row" data-offset="1">
+            {% for post in posts %}
+                <div class="col-md-3 my-3">
+                    {{ include('home/_cardsPosts.html.twig') }}
+                </div>
+            {% endfor %}
+        </div>
+
+        {# Bouton LoadMore #}
+        {% if postsCount > 10 %}
+            <div class="text-center">
+                <a class="btn btn-dark my-4" onclick="loadMorePosts()">Load more</a>
+            </div>
+        {% endif %}
+    </section>
+
+    {# flèche vers le haut #}
+    <div class="position-relative">
+        <div class="position-absolute bottom-0 end-0" style="font-size: 2em">
+            <a href="#navbar-top" class="text-decoration-none text-dark">
+                <i class="fa-solid fa-arrow-up position-absolute bottom-0 end-0 mx-3 mb-2"></i>
+            </a>
+        </div>
+    </div>
+{% endblock %}

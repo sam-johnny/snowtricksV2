@@ -1,0 +1,14 @@
+<a href="{{ path('app_admin_image_edit', {id: image.id}) }}"
+   class="text-decoration-none text-dark me-3"
+   title="Cliquez ici pour modifier l'article"><i
+            class="fa-regular fa-pen-to-square"></i></a>
+<form method="post" action="{{ path('app_admin_image_delete', {id: image.id}) }}"
+      style="display: inline-block"
+      onsubmit="return confirm('Êtes vous sûr de vouloir supprimer cette article ?')">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token"
+           value="{{ csrf_token('delete' ~ image.id) }}">
+    <button style="padding: 0; border: none; background: none"
+            title="Cliquez ici pour supprimer l'image"><i
+                class="fa-regular fa-trash-can text-danger"></i></button>
+</form>

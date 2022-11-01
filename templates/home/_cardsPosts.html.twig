@@ -1,0 +1,43 @@
+<article class="card h-100">
+
+    {# card: image #}
+    <img src="{% if post.imageBanner %} {{ vich_uploader_asset(post.imageBanner)|imagine_filter('my_thumb') }} {% else %} {{ asset('images/header/snowboard.jpg')|imagine_filter('my_thumb')  }} {% endif %}"
+         class="card-img-top"
+         alt="{{ post.title }}">
+
+    {# card: body #}
+    <div class="card-body d-flex justify-content-between">
+        {# card: titre #}
+        <div class="col-md-5">
+            <a href="{{ path('tricks.show', {id: post.id, slug: post.slug}) }}">
+                {{ post.title }}
+            </a>
+        </div>
+        {# Admin: CRUD #}
+        {% if app.user %}
+            <div class="col-md-3">
+                <a href="{{ path('app_admin_post_edit', {id: post.id}) }}"
+                   class="text-decoration-none text-dark mx-2"
+                   title="Cliquez ici pour modifier l'article"><i
+                            class="fa-regular fa-pen-to-square"></i></a>
+                <form method="post" action="{{ path('app_admin_post_delete', {id: post.id}) }}"
+                      style="display: inline-block"
+                      onsubmit="return confirm('Êtes vous sûr de vouloir supprimer cette article ?')">
+                    <input type="hidden" name="_token"
+                           value="{{ csrf_token('delete' ~ post.id) }}">
+                    <button style="padding: 0; border: none; background: none"
+                            title="Cliquez ici pour supprimer l'article"><i
+                                class="fa-regular fa-trash-can text-danger"></i></button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+
+    {# Card: footer #}
+    {% if post.updatedAt is not null %}
+        <div class="card-footer">
+            <small class="text-muted">Dernière mise à jour
+                : {{ post.updatedAt| date('d-m-Y') }}</small>
+        </div>
+    {% endif %}
+</article>

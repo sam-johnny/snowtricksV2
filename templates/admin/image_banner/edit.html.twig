@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'image{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Modifier l'image de bannière</h1>
+        <div class="col-3 my-4">
+            <img src="{{ vich_uploader_asset(image_banner)|imagine_filter('my_thumb') }}" class="my-2 mx-auto img-fluid"
+                 alt="{{ image_banner.post.title }}"
+                 height="auto">
+            <div class="text-center">
+                {{ include('admin/image_banner/_delete_form.html.twig') }}
+            </div>
+        </div>
+            {{ include('admin/image_banner/_form.html.twig', {'button_label': 'Modifier'}) }}
+    </div>
+{% endblock %}
+
+

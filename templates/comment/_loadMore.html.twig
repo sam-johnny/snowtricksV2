@@ -1,0 +1,6 @@
+{# Affichage des commentaires #}
+{% for comment in comments %}
+    <div class="d-flex justify-content-center">
+        {% include "comment/_show.html.twig" %}
+    </div>
+{% endfor %}

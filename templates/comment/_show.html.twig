@@ -1,0 +1,12 @@
+<div class="col-md-4 border">
+    <div class="d-flex mt-4">
+        <img class="img-fluid img-responsive rounded-circle mr-2"
+             src="{{ asset('images/avatar.png') }}" width="38">
+        <div class="text-muted fst-italic mx-3"><span class="fw-bolder text-dark">{{ comment.user.username }}</span> ::
+            le {{ comment.createdAt|date('d-m-Y à H:i:s') }}</div>
+    </div>
+
+    <div>
+        <p>{{ comment.content }}</p>
+    </div>
+</div>

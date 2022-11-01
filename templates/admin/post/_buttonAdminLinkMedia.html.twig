@@ -1,0 +1,16 @@
+<div class="mt-2">
+    <a href="{{ path('app_link_media_edit', {id: link.id}) }}"
+       class="text-decoration-none text-dark me-3"
+       title="Cliquez ici pour modifier l'article"><i
+                class="fa-regular fa-pen-to-square"></i></a>
+    <form method="post" action="{{ path('app_link_media_delete', {id: link.id}) }}"
+          style="display: inline-block"
+          onsubmit="return confirm('Êtes vous sûr de vouloir supprimer ce lien ?')">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token"
+               value="{{ csrf_token('delete' ~ link.id) }}">
+        <button style="padding: 0; border: none; background: none"
+                title="Cliquez ici pour supprimer l'image"><i
+                    class="fa-regular fa-trash-can text-danger"></i></button>
+    </form>
+</div>
